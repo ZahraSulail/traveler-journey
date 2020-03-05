@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".JourneyListFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_journey"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        tools:itemCount="5"
+        tools:layoutManager="LinearLayoutManager"
+        tools:listitem="@layout/fragment_journey_list"
+        tools:orientation="vertical"
+        tools:scrollbars="vertical">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</FrameLayout>

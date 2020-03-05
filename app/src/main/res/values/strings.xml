@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Traveler Journey</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="journey_list">journey_list</string>
+    <string name="journey_map">journey_map</string>
+</resources>

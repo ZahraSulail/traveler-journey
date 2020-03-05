@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "500422573591",
+    "firebase_url": "https://travelerjourney-b87f7.firebaseio.com",
+    "project_id": "travelerjourney-b87f7",
+    "storage_bucket": "travelerjourney-b87f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500422573591:android:3338d5a2f3ec52c36ba652",
+        "android_client_info": {
+          "package_name": "com.barmeg.travelerjourney"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500422573591-o430u3n124hv5njr7m2fjbddmcoif1m4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaUB9w90ZszYKWI_riWoglnIySBbEBOHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500422573591-o430u3n124hv5njr7m2fjbddmcoif1m4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
