@@ -8,19 +8,26 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class JourneysListAdapter extends RecyclerView.Adapter<JourneysListAdapter.JourneyViewHolder> {
+    public interface OnJourneyClickListener {
+
+        void OnJourneyClick(Journey journey);
+    }
 
     private List<Journey> mJourneysList;
 
-    public JourneysListAdapter(List<Journey> mJourneysList){
+    private OnJourneyClickListener mOnJourneyClickListener;
+
+    public JourneysListAdapter(List<Journey> mJourneysList, OnJourneyClickListener onJourneyClickListener){
         this.mJourneysList = mJourneysList;
-
-
+        this.mOnJourneyClickListener =  onJourneyClickListener;
     }
     @NonNull
     @Override
@@ -44,15 +51,23 @@ public class JourneysListAdapter extends RecyclerView.Adapter<JourneysListAdapte
         TextView journyTitleTextView;
         TextView journeyDateTextView;
         ImageView journeyPhotoImageView;
+        Journey journey;
         public JourneyViewHolder(@NonNull View itemView) {
             super( itemView );
             journyTitleTextView = itemView.findViewById( R.id.text_view_journey_title );
             journeyDateTextView = itemView.findViewById( R.id.text_view_journey_date );
             journeyPhotoImageView = itemView.findViewById( R.id.image_view_journey_photo );
+            itemView.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnJourneyClickListener.OnJourneyClick( journey );
+
+                }
+            } );
         }
 
         public void bind(Journey journey){
-
+            this.journey = journey;
             journyTitleTextView.setText(journey.getTitle());
             journeyDateTextView.setText( journey.getFormatedDate());
             Glide.with(journeyPhotoImageView).load( journey.getPhoto()).into( journeyPhotoImageView);

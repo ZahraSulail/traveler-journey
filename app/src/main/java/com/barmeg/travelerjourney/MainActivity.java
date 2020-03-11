@@ -8,16 +8,19 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import androidx.appcompat.widget.Toolbar;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    private FloatingActionButton mAddJourneyButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -30,10 +33,17 @@ public class MainActivity extends AppCompatActivity {
 
         ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment( new JourneyListFragment());
-        pagerAdapter.addFragment( new JourneyListFragment());
+        pagerAdapter.addFragment( new JourneysMapFragment());
         tabLayout.setupWithViewPager(viewPager);
-
         viewPager.setAdapter( pagerAdapter );
+
+        mAddJourneyButton = findViewById( R.id.button_add_new_journey );
+        mAddJourneyButton.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AddNewJourneyActivity.class));
+            }
+        } );
     }
 
 

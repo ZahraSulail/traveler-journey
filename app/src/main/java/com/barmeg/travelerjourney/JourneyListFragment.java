@@ -1,6 +1,7 @@
 package com.barmeg.travelerjourney;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -24,7 +26,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 
-public class JourneyListFragment extends Fragment {
+public class JourneyListFragment extends Fragment implements JourneysListAdapter.OnJourneyClickListener{
 
     private RecyclerView mRecyclerViewJourneys;
     private JourneysListAdapter mJourneysListAdapter;
@@ -56,7 +58,7 @@ public class JourneyListFragment extends Fragment {
                         mJourneys.add(document.toObject( Journey.class ));
 
                     }
-                    mJourneysListAdapter = new JourneysListAdapter( mJourneys );
+                    mJourneysListAdapter = new JourneysListAdapter( mJourneys, JourneyListFragment.this );
                     mRecyclerViewJourneys.setAdapter( mJourneysListAdapter );
 
 
@@ -64,5 +66,13 @@ public class JourneyListFragment extends Fragment {
 
             }
         } );
+    }
+
+    @Override
+    public void OnJourneyClick(Journey journey) {
+        Intent intent = new Intent(getContext(), JourneyDetailsActivity.class);
+        intent.putExtra( JourneyDetailsActivity.JOURNEY_DATA, journey );
+        startActivity( intent );
+
     }
 }

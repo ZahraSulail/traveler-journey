@@ -1,5 +1,8 @@
 package com.barmeg.travelerjourney;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.GeoPoint;
 
@@ -8,7 +11,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class Journey {
+public class Journey implements Parcelable {
     private String title;
     private String description;
     private String photo;
@@ -27,6 +30,38 @@ public class Journey {
         this.location = location;
         this.photo = photo;
     }
+
+    protected Journey(Parcel in) {
+        title = in.readString();
+        description = in.readString();
+        photo = in.readString();
+        date = in.readParcelable( Timestamp.class.getClassLoader() );
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString( title );
+        dest.writeString( description );
+        dest.writeString( photo );
+        dest.writeParcelable( date, flags );
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Journey> CREATOR = new Creator<Journey>() {
+        @Override
+        public Journey createFromParcel(Parcel in) {
+            return new Journey( in );
+        }
+
+        @Override
+        public Journey[] newArray(int size) {
+            return new Journey[size];
+        }
+    };
 
     public String getTitle() {
         return title;
