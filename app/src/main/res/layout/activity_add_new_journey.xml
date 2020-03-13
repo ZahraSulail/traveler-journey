@@ -115,7 +115,7 @@
     <ImageView
         android:id="@+id/image_view_journey"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -142,7 +142,7 @@
 
         <fragment
           android:id="@+id/map"
-            android:name="com.google.android.libraries.maps.SupportMapFragment"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="188dp"
             android:layout_marginStart="8dp"
@@ -159,7 +159,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+
         android:text="@string/add_journey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

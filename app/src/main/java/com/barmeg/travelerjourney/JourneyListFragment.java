@@ -19,7 +19,9 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -47,26 +49,26 @@ public class JourneyListFragment extends Fragment implements JourneysListAdapter
 
         mRecyclerViewJourneys = view.findViewById( R.id.recycler_view_journey );
         mRecyclerViewJourneys.setLayoutManager( new LinearLayoutManager(getContext()) );
-        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
-        firebaseFirestore.collection( "journeys").get().addOnCompleteListener( new OnCompleteListener<QuerySnapshot>() {
+        mJourneys = new ArrayList<>();
+        mJourneysListAdapter = new JourneysListAdapter( mJourneys, JourneyListFragment.this );
+        mRecyclerViewJourneys.setAdapter( mJourneysListAdapter );
+
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+        firebaseFirestore.collection( "journeys").orderBy( "date" ).addSnapshotListener( new EventListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    mJourneys = new ArrayList<>();
-                    for(QueryDocumentSnapshot document: task.getResult()){
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                mJourneys.clear();
+                if(e == null){
+                    for(QueryDocumentSnapshot document: queryDocumentSnapshots){
                         mJourneys.add(document.toObject( Journey.class ));
 
                     }
-                    mJourneysListAdapter = new JourneysListAdapter( mJourneys, JourneyListFragment.this );
-                    mRecyclerViewJourneys.setAdapter( mJourneysListAdapter );
-
-
+                    mJourneysListAdapter.notifyDataSetChanged();
                 }
-
             }
         } );
-    }
+                }
 
     @Override
     public void OnJourneyClick(Journey journey) {

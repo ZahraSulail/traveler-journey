@@ -11,4 +11,12 @@
     <string name="journey_date">date</string>
     <string name="choose_photo">Choose Photo</string>
     <string name="add_journey">Add Journey</string>
+    <string name="photo_Selection_error">Error acured can\'t select photo</string>
+    <string name="uploading_photo">Uploading photo ..</string>
+    <string name="add_journey_success">Journey added successfully</string>
+    <string name="add_journey_failed">Add Journey Failed</string>
+    <string name="uploaded_task_failed">upload Task Failed</string>
+    <string name="error_msg_title">Title can\'t be empty</string>
+    <string name="error_msg_description">Description can\'t be empty</string>
+    <string name="error_msg_date">Date can\'t be empty</string>
 </resources>
